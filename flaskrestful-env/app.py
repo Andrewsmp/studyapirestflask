@@ -14,26 +14,29 @@ class Task(Resource):
         try:
             response = tasks[position]
         except IndexError:
-            response = {'status': 'error','message': 'Has no task with ID {}'.format(position)}
+            response = {'status': 'error','message': 'Has no task in this position'}
         except Exception:
             response = {'status': 'error','message': 'Unknown error. Please contact API administrator'}
         return response
 
     def put(self, position):
-        data = json.loads(request.data)
-        if data['status'] == 'done' or data['status'] == 'pending':
-            tasks[position]['status'] = data['status']
-            return {'status': 'sucess', 'message': 'update status task'}
+        try:
+            data = json.loads(request.data)
+            if (data == 'done' or data == 'pending') and data != tasks[position]['status']:
+                tasks[position]['status'] = data
+                return {'status': 'success', 'message': 'update status task'}
+        except IndexError:
+            return {'status': 'error', 'message': 'Has no task in this position'}
         return {'status': 'error',
         'message': "You can only change " 
         + "the status of the task and the status must be 'done' or 'pending'"}
             
     def delete(self, position):
-        del(tasks[position])
-        return {'status': 'sucess', 'message': 'record deleted'}
-
-def generate_id():
-        return tasks[len(tasks)-1]['id'] + 1
+        try:
+            del(tasks[position])
+            return {'status': 'success', 'message': 'record deleted'}
+        except IndexError:
+            return {'status': 'error', 'message': 'Has no task in this position'}
 
 class List_All_Tasks(Resource):
 
@@ -42,9 +45,9 @@ class List_All_Tasks(Resource):
 
     def post(self):
         data = json.loads(request.data)
-        data['id'] = generate_id()
+        data['id'] = tasks[len(tasks)-1]['id'] + 1
         tasks.append(data)
-        return {'status': 'sucess', 'message': 'inserted task'}
+        return {'status': 'success', 'message': 'inserted task'}
 
 api.add_resource(Task, '/task/<int:position>/')
 api.add_resource(List_All_Tasks, '/task/')
