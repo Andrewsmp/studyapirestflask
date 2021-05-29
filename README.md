@@ -5,6 +5,8 @@ link to course: https://web.digitalinnovation.one/course/desenvolvimento-avancad
 
 <h3>Exercises</h3>
 
-1. Tasks - Create an api that manages a task list. The api should have the following fields: id, owner, task and status.The api should only allow changing the status. No changes should be allowed beyond the status. All the rest of the crud must be implemented(Create, read, update(only status) and delete).
+1. task-env - Create an api that manages a task list. The api should have the following fields: id, owner, task and status.The api should only allow changing the status. No changes should be allowed beyond the status. All the rest of the crud must be implemented(Create, read, update(only status) and delete).
 
-2 - Flask RESTful - Using the task list exercise implement with the RESTful flask extension.
+2. flaskrestful-env - Using the task list exercise implement with the RESTful flask extension.
+
+3. dev-env - Using flask_restful create an API that registers developers and their skills. In a separate module create a list of skills and whenever you change or create a new developer make sure that the sent skills are in the list of skills. The skill module must contain the entire CRUD.
