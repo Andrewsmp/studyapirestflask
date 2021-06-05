@@ -10,3 +10,11 @@ link to course: https://web.digitalinnovation.one/course/desenvolvimento-avancad
 2. flaskrestful-env - Using the task list exercise implement with the RESTful flask extension.
 
 3. dev-env - Using flask_restful create an API that registers developers and their skills. In a separate module create a list of skills and whenever you change or create a new developer make sure that the sent skills are in the list of skills. The skill module must contain the entire CRUD.
+
+4. activities-env - Create a task list where a user can link to a task. Use the flask-restful extension to create an API and sqlalchemy as an ORM to persist the data. A user can have multiple tasks. 
+
+<h3>Tools used in this course</h3>
+
+- Flask
+- flask-restful
+- sqlalchemy
